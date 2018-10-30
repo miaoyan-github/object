@@ -6,6 +6,7 @@
     <article id="article">
       <nav id="nav">
         <ul>
+          <h1>HI，管理员</h1>
           <li><router-link to="/">店铺信息</router-link></li>
           <li><router-link to="/activeMsg">活动信息</router-link></li>
           <li><router-link to="/abnormalStore">异常店铺</router-link></li>
@@ -18,7 +19,7 @@
         <img src="../src/assets/menu_bgs.png" alt="">
       </nav>
       <section id="section">
-        <router-view/> <!--  展示路由页面的内容，如果想跳转用<router-link to='xxx'></router-link> -->
+        <router-view/><!--  展示路由页面的内容，如果想跳转用<router-link to='xxx'></router-link> -->
       </section>
     </article>
   </div>
@@ -34,6 +35,7 @@ export default {
 *{
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 html, body{
   min-width: 800px;
@@ -45,6 +47,10 @@ ul, ol{
 }
 a{
   text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #000;
 }
 #app {
   display: flex;
@@ -72,15 +78,33 @@ a{
 }
 #nav>ul{
   width: 100%;
-  flex-grow: 1;
+  height: calc(100% - 50px);
   background: #EEE;
+  overflow-y: auto;
+}
+#nav>ul>h1{
+  text-align: center;
+  line-height: 80px;
+  font-size: 24px;
+  color: rgb(102,177,255);
+}
+#nav>ul>li{
+  text-align: center;
+}
+#nav>ul>li>a{
+  padding: 10px 20px;
+  line-height: 20px;
+}
+#nav>ul>li>a:hover{
+  background: #CCC;
+  color: #FFF;
 }
 #nav>img{
   width: 100%;
+  height: 50px;
 }
 #section{
-  flex-grow: 1;
+  width: calc(100vw - 200px);
   height: 100%;
-  background: #F6F6F6;
 }
 </style>
