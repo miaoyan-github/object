@@ -65,5 +65,7 @@ export default {
   margin: 0 15px;
   height: 50px;
   line-height: 50px;
+  z-index: 100;
+  background: #FFF;
 }
 </style>
