@@ -6,15 +6,15 @@
     <article id="article">
       <nav id="nav">
         <ul>
-          <h1>HI，管理员</h1>
-          <li><router-link to="/">店铺信息</router-link></li>
-          <li><router-link to="/activeMsg">活动信息</router-link></li>
-          <li><router-link to="/abnormalStore">异常店铺</router-link></li>
-          <li><router-link to="/userCumulant">用户累积量</router-link></li>
-          <li><router-link to="/userSearch">用户信息查询</router-link></li>
-          <li><router-link to="/badcommentMatch">差评信息匹配</router-link></li>
-          <li><router-link to="/popularVegetables">畅销菜品</router-link></li>
-          <li><router-link to="/disfavorvVegetables">低销菜品</router-link></li>
+          <h1><router-link  to="/">HI，管理员</router-link></h1>
+          <li :class="{ highLight: Aindex == 1 }" @click="changRouter(1)"><router-link  to="/storeMsg">店铺信息</router-link></li>
+          <li :class="{ highLight: Aindex == 2 }" @click="changRouter(2)"><router-link  to="/activeMsg">活动信息</router-link></li>
+          <li :class="{ highLight: Aindex == 3 }" @click="changRouter(3)"><router-link to="/abnormalStore">异常店铺</router-link></li>
+          <li :class="{ highLight: Aindex == 4 }" @click="changRouter(4)"><router-link to="/userCumulant">用户累积量</router-link></li>
+          <li :class="{ highLight: Aindex == 5 }" @click="changRouter(5)"><router-link to="/userSearch">用户信息查询</router-link></li>
+          <li :class="{ highLight: Aindex == 6 }" @click="changRouter(6)"><router-link to="/badcommentMatch">差评信息匹配</router-link></li>
+          <li :class="{ highLight: Aindex == 7 }" @click="changRouter(7)"><router-link to="/popularVegetables">畅销菜品</router-link></li>
+          <li :class="{ highLight: Aindex == 8 }" @click="changRouter(8)"><router-link to="/disfavorvVegetables">低销菜品</router-link></li>
         </ul>
         <img src="../src/assets/menu_bgs.png" alt="">
       </nav>
@@ -27,7 +27,17 @@
 
 <script>
 export default {
-  name: 'App' /* 这个name暂时不知道有啥用，官方文档说的是——方便排错 */
+  name: 'App', /* 这个name暂时不知道有啥用，官方文档说的是——方便排错 */
+  data () {
+    return {
+      Aindex: 0
+    }
+  },
+  methods: {
+    changRouter (index) {
+      this.Aindex = index
+    }
+  }
 }
 </script>
 
@@ -50,7 +60,6 @@ a{
   display: block;
   width: 100%;
   height: 100%;
-  color: #000;
 }
 #app {
   display: flex;
@@ -73,16 +82,16 @@ a{
 #nav{
   width: 200px;
   height: 100%;
+  border-right: 1px solid rgb(235,238,245);
   display: flex;
   flex-flow: column wrap;
 }
 #nav>ul{
   width: 100%;
   height: calc(100% - 50px);
-  background: #EEE;
   overflow-y: auto;
 }
-#nav>ul>h1{
+#nav>ul>h1>a{
   text-align: center;
   line-height: 80px;
   font-size: 24px;
@@ -94,10 +103,14 @@ a{
 #nav>ul>li>a{
   padding: 10px 20px;
   line-height: 20px;
+  color: rgb(96,98,102);
 }
 #nav>ul>li>a:hover{
-  background: #CCC;
-  color: #FFF;
+  background: rgb(236,245,255);
+}
+#nav>ul>li.highLight>a{
+  background: rgb(236,245,255);
+  color: rgb(102,177,255);
 }
 #nav>img{
   width: 100%;

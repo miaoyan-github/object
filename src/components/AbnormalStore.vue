@@ -116,6 +116,7 @@ export default {
   .header{
     width: 100%;
     height: 80px;
+    border-left: 1px solid rgb(235,238,245);
   }
   .header>h4{
     padding: 10px 20px 0;
