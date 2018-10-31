@@ -23,7 +23,13 @@
       <el-table-column prop="date" label="店铺电话" fit align="center"></el-table-column>
       <el-table-column prop="name" label="营业时间" fit align="center"></el-table-column>
       <el-table-column prop="address" label="店铺状态" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="操作" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="操作" fit align="center">
+        <template slot-scope="scope">
+          <el-button class="btn" type="primary" icon="el-icon-edit" size="mini" @click="handleClick(scope.row)">评价查询</el-button>
+          <el-button class="btn" type="success" icon="el-icon-tickets" size="mini">订单查询</el-button>
+          <el-button class="btn" type="danger" icon="el-icon-phone-outline" size="mini">配送超时</el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
@@ -174,5 +180,8 @@ export default {
   .btn-search{
     margin: auto 0;
     height: 30px;
+  }
+  .btn{
+    margin: 5px;
   }
 </style>
