@@ -4,7 +4,7 @@
       <h4>低销菜品查询</h4>
       <ul class="content">
         <li>
-          <el-button class="btn-search" type="success" icon="el-icon-refresh" size="mini" @click="runUpdate">刷新</el-button>
+          <el-button class="btn-search" type="success" icon="el-icon-refresh" size="mini" @click="runUpdate" plain>刷新</el-button>
         </li>
       </ul>
     </header>
@@ -98,7 +98,11 @@ export default {
   },
   methods: {
     runUpdate () {
-      alert('刷新')
+      this.$notify({
+        title: '成功',
+        message: '刷新成功',
+        type: 'success'
+      })
     }
   }
 }

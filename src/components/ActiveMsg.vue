@@ -15,7 +15,7 @@
           店铺编号：<el-input class="input" placeholder="请输入内容" v-model="input2" clearable size="mini"></el-input>
         </li>
         <li>
-          <el-button class="btn-search" type="primary" icon="el-icon-search" size="mini" @click="runSearch">查询</el-button>
+          <el-button class="btn-search" type="primary" icon="el-icon-search" size="mini" @click="runSearch" plain>查询</el-button>
         </li>
       </ul>
     </header>
@@ -137,7 +137,10 @@ export default {
         this.input1 = ''
         this.input2 = ''
       } else {
-        alert('请选择或输入查询条件')
+        this.$notify.error({
+          title: '错误',
+          message: '请选择或输入查询条件'
+        })
       }
     }
   }
