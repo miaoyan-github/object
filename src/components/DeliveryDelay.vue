@@ -1,15 +1,17 @@
 <template>
   <div class="container">
     <header class="header">
-      <h4>店铺信息查询</h4>
+      <h4>
+        <el-breadcrumb separator-class="el-icon-arrow-right">
+          <el-breadcrumb-item :to="{ path: '/StoreMsg' }">店铺信息</el-breadcrumb-item>
+          <el-breadcrumb-item>配送信息查询</el-breadcrumb-item>
+        </el-breadcrumb>
+      </h4>
       <ul class="content">
         <li>
-          <el-select class="select" v-model="select" placeholder="关键字类型" size="mini">
+          <el-select class="select" v-model="select" placeholder="店铺" size="mini">
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
-        </li>
-        <li>
-          <el-input class="input" placeholder="请输入内容" v-model="input1" clearable size="mini"></el-input>
         </li>
         <li>
           <el-button class="btn-search" type="primary" icon="el-icon-search" size="mini" @click="runSearch" plain>查询</el-button>
@@ -17,19 +19,16 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 80px)" border style="width: 100%">
-      <el-table-column prop="date" label="店铺编号" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="门店编号" fit align="center"></el-table-column>
       <el-table-column prop="name" label="店铺名称" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="店铺地址" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="店铺电话" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="营业时间" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="店铺状态" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="操作" fit align="center">
-        <template slot-scope="scope">
-          <el-button class="btn" type="primary" icon="el-icon-edit" size="mini" @click="goEvaluationSearch(scope.row)">评价查询</el-button>
-          <el-button class="btn" type="success" icon="el-icon-tickets" size="mini" @click="goListSearch(scope.row)">订单查询</el-button>
-          <el-button class="btn" type="danger" icon="el-icon-phone-outline" size="mini" @click="goDeliveryDelay(scope.row)">配送超时</el-button>
-        </template>
-      </el-table-column>
+      <el-table-column prop="address" label="店铺电话" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="店铺地址" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="订餐时间" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="送达时间" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="配送时长" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="配送费" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="订单编号" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="订单时段" fit align="center"></el-table-column>
     </el-table>
   </div>
 </template>
@@ -112,43 +111,26 @@ export default {
         address: '上海市普陀区金沙江路 1518 弄'
       }],
       options: [{
-        value: '店铺名称',
-        label: '店铺名称'
+        value: '陕味食族·凉皮肉夹馍(常营店)',
+        label: '陕味食族·凉皮肉夹馍(常营店)'
       }, {
-        value: '店铺编号',
-        label: '店铺编号'
-      }, {
-        value: '开业状态',
-        label: '开业状态'
+        value: 't_4spEfCLWIE',
+        label: 't_4spEfCLWIE'
       }],
-      select: '',
-      input1: ''
+      select: ''
     }
   },
   methods: {
     runSearch () {
-      if (this.select || this.input1) {
-        console.log(this.select, this.input1)
+      if (this.select) {
+        console.log(this.select)
         this.select = ''
-        this.input1 = ''
       } else {
         this.$notify.error({
           title: '错误',
           message: '请选择或输入查询条件'
         })
       }
-    },
-    goEvaluationSearch (data) {
-      this.$router.push('/EvaluationSearch')
-      console.log(data.name)
-    },
-    goListSearch (data) {
-      this.$router.push('/ListSearch')
-      console.log(data.date)
-    },
-    goDeliveryDelay (data) {
-      this.$router.push('/DeliveryDelay')
-      console.log(data.address)
     }
   }
 }
@@ -192,8 +174,5 @@ export default {
   .btn-search{
     margin: auto 0;
     height: 30px;
-  }
-  .btn{
-    margin: 5px;
   }
 </style>

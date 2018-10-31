@@ -7,14 +7,14 @@
       <nav id="nav">
         <ul>
           <h1><router-link  to="/">HI，管理员</router-link></h1>
-          <li :class="{ highLight: Aindex == 1 }" @click="changRouter(1)"><router-link  to="/storeMsg">店铺信息</router-link></li>
-          <li :class="{ highLight: Aindex == 2 }" @click="changRouter(2)"><router-link  to="/activeMsg">活动信息</router-link></li>
-          <li :class="{ highLight: Aindex == 3 }" @click="changRouter(3)"><router-link to="/abnormalStore">异常店铺</router-link></li>
-          <li :class="{ highLight: Aindex == 4 }" @click="changRouter(4)"><router-link to="/userCumulant">用户累积量</router-link></li>
-          <li :class="{ highLight: Aindex == 5 }" @click="changRouter(5)"><router-link to="/userSearch">用户信息查询</router-link></li>
-          <li :class="{ highLight: Aindex == 6 }" @click="changRouter(6)"><router-link to="/badcommentMatch">差评信息匹配</router-link></li>
-          <li :class="{ highLight: Aindex == 7 }" @click="changRouter(7)"><router-link to="/popularVegetables">畅销菜品</router-link></li>
-          <li :class="{ highLight: Aindex == 8 }" @click="changRouter(8)"><router-link to="/disfavorvVegetables">低销菜品</router-link></li>
+          <li :class="{ highLight: Aindex == 1 }" @click="changRouter(1)"><router-link  to="/StoreMsg">店铺信息</router-link></li>
+          <li :class="{ highLight: Aindex == 2 }" @click="changRouter(2)"><router-link  to="/ActiveMsg">活动信息</router-link></li>
+          <li :class="{ highLight: Aindex == 3 }" @click="changRouter(3)"><router-link to="/AbnormalStore">异常店铺</router-link></li>
+          <li :class="{ highLight: Aindex == 4 }" @click="changRouter(4)"><router-link to="/UserCumulant">用户累积量</router-link></li>
+          <li :class="{ highLight: Aindex == 5 }" @click="changRouter(5)"><router-link to="/UserSearch">用户信息查询</router-link></li>
+          <li :class="{ highLight: Aindex == 6 }" @click="changRouter(6)"><router-link to="/BadcommentMatch">差评信息匹配</router-link></li>
+          <li :class="{ highLight: Aindex == 7 }" @click="changRouter(7)"><router-link to="/PopularVegetables">畅销菜品</router-link></li>
+          <li :class="{ highLight: Aindex == 8 }" @click="changRouter(8)"><router-link to="/DisfavorvVegetables">低销菜品</router-link></li>
         </ul>
         <img src="../src/assets/menu_bgs.png" alt="">
       </nav>

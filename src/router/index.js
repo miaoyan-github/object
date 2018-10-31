@@ -9,6 +9,9 @@ import UserSearch from '@/components/UserSearch'
 import BadcommentMatch from '@/components/BadcommentMatch'
 import PopularVegetables from '@/components/PopularVegetables'
 import DisfavorvVegetables from '@/components/DisfavorvVegetables'
+import EvaluationSearch from '@/components/EvaluationSearch'
+import ListSearch from '@/components/ListSearch'
+import DeliveryDelay from '@/components/DeliveryDelay'
 
 Vue.use(Router) /* 使用路由 */
 
@@ -58,6 +61,21 @@ export default new Router({
       path: '/DisfavorvVegetables',
       name: 'DisfavorvVegetables',
       component: DisfavorvVegetables
+    },
+    {
+      path: '/EvaluationSearch',
+      name: 'EvaluationSearch',
+      component: EvaluationSearch
+    },
+    {
+      path: '/ListSearch',
+      name: 'ListSearch',
+      component: ListSearch
+    },
+    {
+      path: '/DeliveryDelay',
+      name: 'DeliveryDelay',
+      component: DeliveryDelay
     }
   ]
 })
