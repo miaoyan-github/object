@@ -41,6 +41,7 @@ export default {
 }
 .card ul{
   margin: 20px 0;
+  color: rgb(96,98,102);
 }
 .card ul li{
   line-height: 40px;
@@ -54,6 +55,7 @@ export default {
   margin-right: 50px;
 }
 .footer{
+  color: rgb(96,98,102);
   position: fixed;
   left: 200px;
   right: 0;
