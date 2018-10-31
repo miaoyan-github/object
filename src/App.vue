@@ -6,7 +6,7 @@
     <article id="article">
       <nav id="nav">
         <ul>
-          <h1><router-link  to="/">HI，管理员</router-link></h1>
+          <h1 @click="changRouter(0)"><router-link  to="/">HI，管理员</router-link></h1>
           <li :class="{ highLight: Aindex == 1 }" @click="changRouter(1)"><router-link  to="/StoreMsg">店铺信息</router-link></li>
           <li :class="{ highLight: Aindex == 2 }" @click="changRouter(2)"><router-link  to="/ActiveMsg">活动信息</router-link></li>
           <li :class="{ highLight: Aindex == 3 }" @click="changRouter(3)"><router-link to="/AbnormalStore">异常店铺</router-link></li>
