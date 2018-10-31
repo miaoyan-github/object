@@ -9,9 +9,9 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 80px)" border style="width: 100%">
-      <el-table-column prop="date" label="客户姓名" width="300" align="center"></el-table-column>
-      <el-table-column prop="name" label="收件地址" width="600" align="center"></el-table-column>
-      <el-table-column prop="address" label="累计数量" width="300" align="center"></el-table-column>
+      <el-table-column prop="date" label="客户姓名" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="收件地址" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="累计数量" fit align="center"></el-table-column>
     </el-table>
   </div>
 </template>

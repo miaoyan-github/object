@@ -17,13 +17,13 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 80px)" border style="width: 100%">
-      <el-table-column prop="date" label="客户编号" width="200" align="center"></el-table-column>
-      <el-table-column prop="name" label="客户姓名" width="200" align="center"></el-table-column>
-      <el-table-column prop="address" label="客户地址" width="200" align="center"></el-table-column>
-      <el-table-column prop="date" label="客户手机号" width="200" align="center"></el-table-column>
-      <el-table-column prop="name" label="店铺编号" width="200" align="center"></el-table-column>
-      <el-table-column prop="address" label="店铺名称" width="200" align="center"></el-table-column>
-      <el-table-column prop="date" label="最近订单号" width="200" align="center"></el-table-column>
+      <el-table-column prop="date" label="客户编号" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="客户姓名" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="客户地址" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="客户手机号" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="店铺编号" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="店铺名称" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="最近订单号" fit align="center"></el-table-column>
     </el-table>
   </div>
 </template>

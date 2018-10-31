@@ -20,19 +20,19 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 80px)" border style="width: 100%">
-      <el-table-column prop="date" label="店铺编号" width="100" align="center"></el-table-column>
-      <el-table-column prop="name" label="店铺名称" width="100" align="center"></el-table-column>
-      <el-table-column prop="address" label="商品名称" width="100" align="center"></el-table-column>
-      <el-table-column prop="date" label="当日库存" width="100" align="center"></el-table-column>
-      <el-table-column prop="name" label="生效周期" width="100" align="center"></el-table-column>
-      <el-table-column prop="address" label="商品原价" width="100" align="center"></el-table-column>
-      <el-table-column prop="date" label="折扣价格" width="100" align="center"></el-table-column>
-      <el-table-column prop="name" label="活动状态" width="100" align="center"></el-table-column>
-      <el-table-column prop="address" label="用户类型" width="100" align="center"></el-table-column>
-      <el-table-column prop="date" label="活动开始时间" width="100" align="center"></el-table-column>
-      <el-table-column prop="name" label="活动结束时间" width="100" align="center"></el-table-column>
-      <el-table-column prop="address" label="每单限购数量" width="100" align="center"></el-table-column>
-      <el-table-column prop="date" label="当日剩余可购买数" width="100" align="center"></el-table-column>
+      <el-table-column prop="date" label="店铺编号" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="店铺名称" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="商品名称" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="当日库存" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="生效周期" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="商品原价" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="折扣价格" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="活动状态" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="用户类型" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="活动开始时间" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="活动结束时间" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="每单限购数量" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="当日剩余可购买数" fit align="center"></el-table-column>
     </el-table>
   </div>
 </template>

@@ -9,10 +9,10 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 80px)" border style="width: 100%">
-      <el-table-column prop="date" label="菜品编号" width="300" align="center"></el-table-column>
-      <el-table-column prop="name" label="菜品名称" width="300" align="center"></el-table-column>
-      <el-table-column prop="address" label="菜品数量" width="300" align="center"></el-table-column>
-      <el-table-column prop="address" label="菜品价格" width="300" align="center"></el-table-column>
+      <el-table-column prop="date" label="菜品编号" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="菜品名称" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="菜品数量" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="菜品价格" fit align="center"></el-table-column>
     </el-table>
   </div>
 </template>

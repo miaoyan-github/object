@@ -17,18 +17,18 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 80px)" border style="width: 100%">
-      <el-table-column prop="date" label="店铺编号" width="100" align="center"></el-table-column>
-      <el-table-column prop="name" label="店铺名称" width="200" align="center"></el-table-column>
-      <el-table-column prop="address" label="清单" width="300" align="center"></el-table-column>
-      <el-table-column prop="date" label="点赞" width="200" align="center"></el-table-column>
-      <el-table-column prop="name" label="点踩" width="100" align="center"></el-table-column>
-      <el-table-column prop="address" label="相似度" width="100" align="center"></el-table-column>
-      <el-table-column prop="date" label="用户姓名" width="100" align="center"></el-table-column>
-      <el-table-column prop="date" label="用户手机号" width="200" align="center"></el-table-column>
-      <el-table-column prop="name" label="订单推送时间" width="100" align="center"></el-table-column>
-      <el-table-column prop="address" label="评价获取时间" width="100" align="center"></el-table-column>
-      <el-table-column prop="date" label="计算订单时长" width="100" align="center"></el-table-column>
-      <el-table-column prop="date" label="评价订单时长" width="100" align="center"></el-table-column>
+      <el-table-column prop="date" label="店铺编号" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="店铺名称" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="清单" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="点赞" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="点踩" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="相似度" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="用户姓名" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="用户手机号" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="订单推送时间" fit align="center"></el-table-column>
+      <el-table-column prop="address" label="评价获取时间" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="计算订单时长" fit align="center"></el-table-column>
+      <el-table-column prop="date" label="评价订单时长" fit align="center"></el-table-column>
     </el-table>
   </div>
 </template>
