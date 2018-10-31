@@ -16,7 +16,7 @@
         </li>
       </ul>
     </header>
-    <el-table :data="tableData" height="calc(100% - 80px)" border style="width: 100%">
+    <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
       <el-table-column prop="date" label="客户编号" fit align="center"></el-table-column>
       <el-table-column prop="name" label="客户姓名" fit align="center"></el-table-column>
       <el-table-column prop="address" label="客户地址" fit align="center"></el-table-column>
@@ -25,6 +25,7 @@
       <el-table-column prop="address" label="店铺名称" fit align="center"></el-table-column>
       <el-table-column prop="date" label="最近订单号" fit align="center"></el-table-column>
     </el-table>
+    <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
   </div>
 </template>
 
@@ -128,6 +129,9 @@ export default {
           message: '请选择或输入查询条件'
         })
       }
+    },
+    changPage (page) {
+      console.log(page)
     }
   }
 }
@@ -171,5 +175,11 @@ export default {
   .btn-search{
     margin: auto 0;
     height: 30px;
+  }
+  .page-break{
+    text-align: center;
+    padding: 11px 0;
+    height: 50px;
+    line-height: 50px;
   }
 </style>
