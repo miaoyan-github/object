@@ -31,7 +31,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination class="page-break" background layout="prev, pager, next" :total="1000"></el-pagination>
+    <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
   </div>
 </template>
 
@@ -150,6 +150,9 @@ export default {
     goDeliveryDelay (data) {
       this.$router.push('/DeliveryDelay')
       console.log(data.address)
+    },
+    changPage (page) {
+      console.log(page)
     }
   }
 }
