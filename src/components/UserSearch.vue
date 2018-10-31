@@ -137,7 +137,7 @@ export default {
   .container{
     width: 100%;
     height: 100%;
-    min-width: 600px;
+    min-width: 1000px;
   }
   .header{
     width: 100%;

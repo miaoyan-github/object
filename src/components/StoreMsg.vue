@@ -16,7 +16,7 @@
         </li>
       </ul>
     </header>
-    <el-table :data="tableData" height="calc(100% - 80px)" border style="width: 100%">
+    <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
       <el-table-column prop="date" label="店铺编号" fit align="center"></el-table-column>
       <el-table-column prop="name" label="店铺名称" fit align="center"></el-table-column>
       <el-table-column prop="address" label="店铺地址" fit align="center"></el-table-column>
@@ -31,6 +31,7 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination class="page-break" background layout="prev, pager, next" :total="1000"></el-pagination>
   </div>
 </template>
 
@@ -158,7 +159,7 @@ export default {
   .container{
     width: 100%;
     height: 100%;
-    min-width: 600px;
+    min-width: 1000px;
   }
   .header{
     width: 100%;
@@ -195,5 +196,11 @@ export default {
   }
   .btn{
     margin: 5px;
+  }
+  .page-break{
+    text-align: center;
+    padding: 11px 0;
+    height: 50px;
+    line-height: 50px;
   }
 </style>

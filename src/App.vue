@@ -48,7 +48,7 @@ export default {
   box-sizing: border-box;
 }
 html, body{
-  min-width: 800px;
+  min-width: 1200px;
   min-height: 400px;
   overflow: hidden;
 }

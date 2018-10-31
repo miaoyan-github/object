@@ -5,8 +5,7 @@
         <el-breadcrumb separator-class="el-icon-arrow-right">
           <el-breadcrumb-item :to="{ path: '/StoreMsg' }">店铺信息</el-breadcrumb-item>
           <el-breadcrumb-item>评价信息查询</el-breadcrumb-item>
-        </el-breadcrumb>
-      </h4>
+        </el-breadcrumb></h4>
       <ul class="content">
         <li>
           <el-button class="btn-search" type="success" icon="el-icon-refresh" size="mini" @click="runUpdate" plain>刷新</el-button>
@@ -125,12 +124,7 @@ export default {
   .container{
     width: 100%;
     height: 100%;
-    min-width: 600px;
-  }
-  .header{
-    width: 100%;
-    height: 80px;
-    border-left: 1px solid rgb(235,238,245);
+    min-width: 1000px;
   }
   .header>h4{
     padding: 10px 20px 0;
