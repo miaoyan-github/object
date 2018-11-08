@@ -9,13 +9,13 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
-      <el-table-column prop="date" label="店铺编号" fit align="center"></el-table-column>
+      <el-table-column prop="appPoiCode" label="店铺编号" fit align="center"></el-table-column>
       <el-table-column prop="name" label="店铺名称" fit align="center"></el-table-column>
       <el-table-column prop="address" label="店铺地址" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="店铺电话" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="营业时间" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="店铺状态" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="操作" fit align="center"></el-table-column>
+      <el-table-column prop="phone" label="店铺电话" fit align="center"></el-table-column>
+      <el-table-column prop="shippingTime" label="营业时间" fit align="center"></el-table-column>
+      <el-table-column prop="openLevel" label="店铺状态" fit align="center"></el-table-column>
+      <el-table-column prop="operate" label="操作" fit align="center"></el-table-column>
     </el-table>
     <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
   </div>
@@ -25,82 +25,19 @@
 export default {
   data () {
     return {
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-06',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-07',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }]
+      tableData: []
     }
   },
+  mounted () {
+    this.getData()
+  },
   methods: {
+    getData () {
+      this.axios.get('/api/show.htm?method=showErrorPage').then(res => {
+        this.tableData = res.data[0].data
+        console.log(res.data[0].data)
+      })
+    },
     runUpdate () {
       this.$notify({
         title: '成功',

@@ -16,14 +16,14 @@
         </li>
       </ul>
     </header>
-    <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
-      <el-table-column prop="date" label="店铺编号" fit align="center"></el-table-column>
+    <el-table :data="tableData" height="calc(100% - 80px)" border style="width: 100%">
+      <el-table-column prop="appId" label="店铺编号" fit align="center"></el-table-column>
       <el-table-column prop="name" label="店铺名称" fit align="center"></el-table-column>
       <el-table-column prop="address" label="店铺地址" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="店铺电话" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="营业时间" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="店铺状态" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="操作" fit align="center">
+      <el-table-column prop="phone" label="店铺电话" fit align="center"></el-table-column>
+      <el-table-column prop="shippingTime" label="营业时间" fit align="center"></el-table-column>
+      <el-table-column prop="openLevel" label="店铺状态" fit align="center"></el-table-column>
+      <el-table-column prop="Operate" label="操作" fit align="center">
         <template slot-scope="scope">
           <el-button class="btn" type="primary" icon="el-icon-edit" size="mini" @click="goEvaluationSearch(scope.row)">评价查询</el-button>
           <el-button class="btn" type="success" icon="el-icon-tickets" size="mini" @click="goListSearch(scope.row)">订单查询</el-button>
@@ -31,7 +31,6 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
   </div>
 </template>
 
@@ -39,79 +38,7 @@
 export default {
   data () {
     return {
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-06',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-07',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }],
+      tableData: [],
       options: [{
         value: '店铺名称',
         label: '店铺名称'
@@ -126,10 +53,24 @@ export default {
       input1: ''
     }
   },
+  mounted () {
+    this.getData()
+  },
   methods: {
+    getData (select, input1) {
+      this.axios.get(`/api/show.htm?method=showShow&&KeyType=${select}&&keyValue=${input1}`).then(res => {
+        if (parseInt(res.data[0].code) === 200) {
+          console.log('店铺信息查询', res.data[0])
+          this.tableData = res.data[0].data
+        } else {
+          console.log(res.data[0].msg)
+        }
+      })
+    },
     runSearch () {
       if (this.select || this.input1) {
         console.log(this.select, this.input1)
+        this.getData(this.select, this.input1)
         this.select = ''
         this.input1 = ''
       } else {
@@ -140,19 +81,13 @@ export default {
       }
     },
     goEvaluationSearch (data) {
-      this.$router.push('/EvaluationSearch')
-      console.log(data.name)
+      this.$router.push(`/EvaluationSearch?appId=${data.appId}`)
     },
     goListSearch (data) {
-      this.$router.push('/ListSearch')
-      console.log(data.date)
+      this.$router.push(`/ListSearch?appId=${data.appId}`)
     },
     goDeliveryDelay (data) {
-      this.$router.push('/DeliveryDelay')
-      console.log(data.address)
-    },
-    changPage (page) {
-      console.log(page)
+      this.$router.push(`/DeliveryDelay?appId=${data.appId}`)
     }
   }
 }

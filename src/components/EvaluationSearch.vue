@@ -12,21 +12,20 @@
         </li>
       </ul>
     </header>
-    <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
-      <el-table-column prop="date" label="店铺编号" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="店铺名称" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="简评内容" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="评价内容" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="店铺地址" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="获取时间" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="配送分数" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="餐品分数" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="订单分数" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="包装分数" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="分析评价" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="原因" fit align="center"></el-table-column>
+    <el-table :data="tableData" height="calc(100% - 80px)" border style="width: 100%">
+      <el-table-column prop="appId" label="店铺编号" fit align="center"></el-table-column>
+      <el-table-column prop="appName" label="店铺名称" fit align="center"></el-table-column>
+      <el-table-column prop="code" label="简评内容" fit align="center"></el-table-column>
+      <el-table-column prop="msg" label="评价内容" fit align="center"></el-table-column>
+      <el-table-column prop="appAddress" label="店铺地址" fit align="center"></el-table-column>
+      <el-table-column prop="makedate" label="获取时间" fit align="center"></el-table-column>
+      <el-table-column prop="pssc" label="配送分数" fit align="center"></el-table-column>
+      <el-table-column prop="cpsc" label="餐品分数" fit align="center"></el-table-column>
+      <el-table-column prop="ddsc" label="订单分数" fit align="center"></el-table-column>
+      <el-table-column prop="pksc" label="包装分数" fit align="center"></el-table-column>
+      <el-table-column prop="zjsc" label="分析评价" fit align="center"></el-table-column>
+      <el-table-column prop="desc" label="原因" fit align="center"></el-table-column>
     </el-table>
-    <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
   </div>
 </template>
 
@@ -34,91 +33,42 @@
 export default {
   data () {
     return {
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-06',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-07',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }]
+      tableData: [],
+      isUpdate: false
     }
   },
+  mounted () {
+    this.getData(this.$route.query.appId)
+  },
   methods: {
-    runUpdate () {
-      this.$notify({
-        title: '成功',
-        message: '刷新成功',
-        type: 'success'
+    getData (appId) {
+      this.axios.get(`/api/show.htm?method=showFetchs&&appId=${appId}`).then(res => {
+        if (parseInt(res.data[0].code) === 200) {
+          console.log('评价信息查询', res.data[0])
+          this.tableData = res.data[0].data
+          if (this.isUpdate) {
+            this.$notify({
+              title: '成功',
+              message: '刷新成功',
+              type: 'success'
+            })
+            this.isUpdate = false
+          }
+        } else {
+          console.log(res.data[0].msg)
+          if (this.isUpdate) {
+            this.$notify.error({
+              title: '失败',
+              message: '请重新刷新'
+            })
+            this.isUpdate = false
+          }
+        }
       })
     },
-    changPage (page) {
-      console.log(page)
+    runUpdate () {
+      this.isUpdate = true
+      this.getData(this.$route.query.appId)
     }
   }
 }

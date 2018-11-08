@@ -9,10 +9,10 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
-      <el-table-column prop="date" label="菜品编号" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="菜品名称" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="菜品数量" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="菜品价格" fit align="center"></el-table-column>
+      <el-table-column prop="id" label="菜品编号" fit align="center"></el-table-column>
+      <el-table-column prop="foodName" label="菜品名称" fit align="center"></el-table-column>
+      <el-table-column prop="num" label="菜品数量" fit align="center"></el-table-column>
+      <el-table-column prop="price" label="菜品价格" fit align="center"></el-table-column>
     </el-table>
     <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
   </div>
@@ -22,82 +22,19 @@
 export default {
   data () {
     return {
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-06',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-07',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }]
+      tableData: []
     }
   },
+  mounted () {
+    this.getData()
+  },
   methods: {
+    getData () {
+      this.axios.get('/api/show.htm?method=showDownPage').then(res => {
+        this.tableData = res.data[0].data
+        console.log(res.data[0].data)
+      })
+    },
     runUpdate () {
       this.$notify({
         title: '成功',

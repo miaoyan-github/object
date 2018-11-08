@@ -9,11 +9,11 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
-      <el-table-column prop="date" label="客户姓名" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="收件地址" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="累计数量" fit align="center"></el-table-column>
+      <el-table-column prop="recipientname" label="客户姓名" fit align="center"></el-table-column>
+      <el-table-column prop="recipientaddress" label="收件地址" fit align="center"></el-table-column>
+      <el-table-column prop="num" label="累计数量" fit align="center"></el-table-column>
     </el-table>
-    <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
+    <el-pagination :page-size="20" class="page-break" background layout="prev, pager, next" :total="total" @current-change="changPage"></el-pagination>
   </div>
 </template>
 
@@ -21,91 +21,49 @@
 export default {
   data () {
     return {
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-06',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-07',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }]
+      tableData: [],
+      total: 0,
+      currentPage: 1,
+      isUpdate: false
     }
   },
+  mounted () {
+    this.getData(this.currentPage)
+  },
   methods: {
-    runUpdate () {
-      this.$notify({
-        title: '成功',
-        message: '刷新成功',
-        type: 'success'
+    getData (page) {
+      this.axios.get(`/api/show.htm?method=showNum&&pageNo=${page}`).then(res => {
+        if (parseInt(res.data[0].code) === 200) {
+          console.log('累计用户查询', res.data[0])
+          this.tableData = res.data[0].data
+          this.total = parseInt(res.data[0].pageSize)
+          if (this.isUpdate) {
+            this.$notify({
+              title: '成功',
+              message: '刷新成功',
+              type: 'success'
+            })
+            this.isUpdate = false
+          }
+        } else {
+          console.log(res.data[0].msg)
+          if (this.isUpdate) {
+            this.$notify.error({
+              title: '失败',
+              message: '请重新刷新'
+            })
+            this.isUpdate = false
+          }
+        }
       })
     },
+    runUpdate () {
+      this.isUpdate = true
+      this.getData(this.currentPage)
+    },
     changPage (page) {
-      console.log(page)
+      this.currentPage = page
+      this.getData(page)
     }
   }
 }
