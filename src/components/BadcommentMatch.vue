@@ -17,18 +17,18 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
-      <el-table-column prop="date" label="店铺编号" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="店铺名称" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="清单" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="点赞" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="点踩" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="相似度" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="用户姓名" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="用户手机号" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="订单推送时间" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="评价获取时间" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="计算订单时长" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="评价订单时长" fit align="center"></el-table-column>
+      <el-table-column prop="appId" label="店铺编号" fit align="center"></el-table-column>
+      <el-table-column prop="appName" label="店铺名称" fit align="center"></el-table-column>
+      <el-table-column prop="foodlist" label="清单" fit align="center"></el-table-column>
+      <el-table-column prop="upfood" label="点赞" fit align="center"></el-table-column>
+      <el-table-column prop="enfood" label="点踩" fit align="center"></el-table-column>
+      <el-table-column prop="sc" label="相似度" fit align="center"></el-table-column>
+      <el-table-column prop="userName" label="用户姓名" fit align="center"></el-table-column>
+      <el-table-column prop="userPhone" label="用户手机号" fit align="center"></el-table-column>
+      <el-table-column prop="getTime" label="订单推送时间" fit align="center"></el-table-column>
+      <el-table-column prop="showTime" label="评价获取时间" fit align="center"></el-table-column>
+      <el-table-column prop="orderTime" label="计算订单时长" fit align="center"></el-table-column>
+      <el-table-column prop="fetchTime" label="评价订单时长" fit align="center"></el-table-column>
     </el-table>
     <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
   </div>
@@ -38,79 +38,7 @@
 export default {
   data () {
     return {
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-06',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-07',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }],
+      tableData: [],
       options: [{
         value: '陕味食族·凉皮肉夹馍(常营店)',
         label: '陕味食族·凉皮肉夹馍(常营店)'
@@ -122,7 +50,20 @@ export default {
       input1: ''
     }
   },
+  mounted () {
+    this.getData()
+  },
   methods: {
+    getData () {
+      this.axios.get(`/api/show.htm?method=showWrongs`).then(res => {
+        if (parseInt(res.data[0].code) === 200) {
+          console.log('差评信息匹配', res.data[0])
+          this.tableData = res.data[0].data
+        } else {
+          console.log(res.data[0].msg)
+        }
+      })
+    },
     runSearch () {
       if (this.select || this.input1) {
         console.log(this.select, this.input1)

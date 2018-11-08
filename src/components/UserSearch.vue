@@ -17,13 +17,13 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
-      <el-table-column prop="date" label="客户编号" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="客户姓名" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="客户地址" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="客户手机号" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="店铺编号" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="店铺名称" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="最近订单号" fit align="center"></el-table-column>
+      <el-table-column prop="id" label="客户编号" fit align="center"></el-table-column>
+      <el-table-column prop="username" label="客户姓名" fit align="center"></el-table-column>
+      <el-table-column prop="useraddress" label="客户地址" fit align="center"></el-table-column>
+      <el-table-column prop="userphone" label="客户手机号" fit align="center"></el-table-column>
+      <el-table-column prop="storeid" label="店铺编号" fit align="center"></el-table-column>
+      <el-table-column prop="storename" label="店铺名称" fit align="center"></el-table-column>
+      <el-table-column prop="userorderid" label="最近订单号" fit align="center"></el-table-column>
     </el-table>
     <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
   </div>
@@ -33,91 +33,25 @@
 export default {
   data () {
     return {
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-06',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-07',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }],
-      options: [{
-        value: '陕味食族·凉皮肉夹馍(常营店)',
-        label: '陕味食族·凉皮肉夹馍(常营店)'
-      }, {
-        value: 't_4spEfCLWIE',
-        label: 't_4spEfCLWIE'
-      }],
+      tableData: [],
       select: '',
       input1: ''
     }
   },
+  mounted () {
+    this.getData()
+  },
   methods: {
+    getData () {
+      this.axios.get(`/api/show.htm?method=showUsers`).then(res => {
+        if (parseInt(res.data[0].code) === 200) {
+          console.log('用户信息查询', res.data[0])
+          this.tableData = res.data[0].data
+        } else {
+          console.log(res.data[0].msg)
+        }
+      })
+    },
     runSearch () {
       if (this.input1 || this.select) {
         console.log(this.input1, this.select)

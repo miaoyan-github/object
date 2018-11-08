@@ -20,19 +20,19 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
-      <el-table-column prop="date" label="店铺编号" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="店铺名称" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="商品名称" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="当日库存" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="生效周期" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="商品原价" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="折扣价格" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="活动状态" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="用户类型" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="活动开始时间" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="活动结束时间" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="每单限购数量" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="当日剩余可购买数" fit align="center"></el-table-column>
+      <el-table-column prop="appid" label="店铺编号" fit align="center"></el-table-column>
+      <el-table-column prop="appName" label="店铺名称" fit align="center"></el-table-column>
+      <el-table-column prop="name" label="商品名称" fit align="center"></el-table-column>
+      <el-table-column prop="dayLimit" label="当日库存" fit align="center"></el-table-column>
+      <el-table-column prop="weeksTime" label="生效周期" fit align="center"></el-table-column>
+      <el-table-column prop="originPrice" label="商品原价" fit align="center"></el-table-column>
+      <el-table-column prop="actPrice" label="折扣价格" fit align="center"></el-table-column>
+      <el-table-column prop="status" label="活动状态" fit align="center"></el-table-column>
+      <el-table-column prop="userType" label="用户类型" fit align="center"></el-table-column>
+      <el-table-column prop="startTime" label="活动开始时间" fit align="center"></el-table-column>
+      <el-table-column prop="endTime" label="活动结束时间" fit align="center"></el-table-column>
+      <el-table-column prop="orderLimit" label="每单限购数量" fit align="center"></el-table-column>
+      <el-table-column prop="stock" label="当日剩余可购买数" fit align="center"></el-table-column>
     </el-table>
     <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
   </div>
@@ -42,79 +42,7 @@
 export default {
   data () {
     return {
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-06',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-07',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }],
+      tableData: [],
       options: [{
         value: '待生效',
         label: '待生效'
@@ -130,7 +58,20 @@ export default {
       input2: ''
     }
   },
+  mounted () {
+    this.getData()
+  },
   methods: {
+    getData () {
+      this.axios.get(`/api/show.htm?method=showDiscount`).then(res => {
+        if (parseInt(res.data[0].code) === 200) {
+          console.log('活动信息查询', res.data[0])
+          this.tableData = res.data[0].data
+        } else {
+          console.log(res.data[0].msg)
+        }
+      })
+    },
     runSearch () {
       if (this.select || this.input1 || this.input2) {
         console.log(this.select, this.input1, this.input2)

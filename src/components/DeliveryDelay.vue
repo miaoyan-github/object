@@ -19,16 +19,16 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
-      <el-table-column prop="date" label="门店编号" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="店铺名称" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="店铺电话" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="店铺地址" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="订餐时间" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="送达时间" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="配送时长" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="配送费" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="订单编号" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="订单时段" fit align="center"></el-table-column>
+      <el-table-column prop="appId" label="门店编号" fit align="center"></el-table-column>
+      <el-table-column prop="appName" label="店铺名称" fit align="center"></el-table-column>
+      <el-table-column prop="appPhone" label="店铺电话" fit align="center"></el-table-column>
+      <el-table-column prop="appAdd" label="店铺地址" fit align="center"></el-table-column>
+      <el-table-column prop="rTime" label="订餐时间" fit align="center"></el-table-column>
+      <el-table-column prop="cTime" label="送达时间" fit align="center"></el-table-column>
+      <el-table-column prop="dTime" label="配送时长" fit align="center"></el-table-column>
+      <el-table-column prop="shipFee" label="配送费" fit align="center"></el-table-column>
+      <el-table-column prop="orderId" label="订单编号" fit align="center"></el-table-column>
+      <el-table-column prop="sd" label="订单时段" fit align="center"></el-table-column>
     </el-table>
     <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
   </div>
@@ -38,79 +38,7 @@
 export default {
   data () {
     return {
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-06',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-07',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }],
+      tableData: [],
       options: [{
         value: '陕味食族·凉皮肉夹馍(常营店)',
         label: '陕味食族·凉皮肉夹馍(常营店)'
@@ -121,7 +49,20 @@ export default {
       select: ''
     }
   },
+  mounted () {
+    this.getData(this.$route.query.appId)
+  },
   methods: {
+    getData (appId) {
+      this.axios.get(`/api/show.htm?method=showDcs&&appId=${appId}`).then(res => {
+        if (parseInt(res.data[0].code) === 200) {
+          console.log('配送信息查询', res.data[0])
+          this.tableData = res.data[0].data
+        } else {
+          console.log(res.data[0].msg)
+        }
+      })
+    },
     runSearch () {
       if (this.select) {
         console.log(this.select)

@@ -53,10 +53,10 @@ export default {
       input2: ''
     }
   },
+  mounted () {
+    this.getData(this.$route.query.appId)
+  },
   methods: {
-    mounted () {
-      // this.getData(this.$route.query.appId)
-    },
     getData (appId) {
       this.axios.get(`/api/show.htm?method=showOrderDetails&&appId=${appId}`).then(res => {
         if (parseInt(res.data[0].code) === 200) {
