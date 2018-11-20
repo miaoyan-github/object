@@ -25,19 +25,19 @@
       </ul>
     </header>
     <el-table :data="tableData" height="calc(100% - 130px)" border style="width: 100%">
-      <el-table-column prop="date" label="店铺编号" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="店铺名称" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="收件人姓名" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="收件人电话" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="总价" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="原价" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="订单状态" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="门店配送费" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="用户下单时间" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="订单完成时间" fit align="center"></el-table-column>
-      <el-table-column prop="name" label="配送方名称" fit align="center"></el-table-column>
-      <el-table-column prop="address" label="骑手电话" fit align="center"></el-table-column>
-      <el-table-column prop="date" label="操作" fit align="center"></el-table-column>
+      <el-table-column prop="appPoiCode" label="店铺编号" fit align="center"></el-table-column>
+      <el-table-column prop="wmPoiName" label="店铺名称" fit align="center"></el-table-column>
+      <el-table-column prop="recipientName" label="收件人姓名" fit align="center"></el-table-column>
+      <el-table-column prop="recipientPhone" label="收件人电话" fit align="center"></el-table-column>
+      <el-table-column prop="total" label="总价" fit align="center"></el-table-column>
+      <el-table-column prop="originalPrice" label="原价" fit align="center"></el-table-column>
+      <el-table-column prop="status" label="订单状态" fit align="center"></el-table-column>
+      <el-table-column prop="shippingFee" label="门店配送费" fit align="center"></el-table-column>
+      <el-table-column prop="orderSendTime" label="用户下单时间" fit align="center"></el-table-column>
+      <el-table-column prop="orderCompletedTime" label="订单完成时间" fit align="center"></el-table-column>
+      <el-table-column prop="logisticsName" label="配送方名称" fit align="center"></el-table-column>
+      <el-table-column prop="logisticsDispatcherMobile" label="骑手电话" fit align="center"></el-table-column>
+      <el-table-column prop="operate" label="操作" fit align="center"></el-table-column>
     </el-table>
     <el-pagination class="page-break" background layout="prev, pager, next" :total="1000" @current-change="changPage"></el-pagination>
   </div>
@@ -48,6 +48,16 @@ export default {
   data () {
     return {
       tableData: [],
+      options: [{
+        value: '待生效',
+        label: '待生效'
+      }, {
+        value: '生效',
+        label: '生效'
+      }, {
+        value: '过期',
+        label: '过期'
+      }],
       select: '',
       input1: '',
       input2: ''
@@ -70,7 +80,6 @@ export default {
     runSearch () {
       if (this.select || this.input1 || this.input2) {
         console.log(this.select, this.input1, this.input2)
-        // , this.select, this.input1, this.input2
         this.getData(this.$route.query.appId)
         this.select = ''
         this.input1 = ''

@@ -45,6 +45,9 @@ export default {
       }, {
         value: 't_4spEfCLWIE',
         label: 't_4spEfCLWIE'
+      }, {
+        value: '4599359',
+        label: '陕味十足（未来城店）'
       }],
       select: '',
       input1: ''
